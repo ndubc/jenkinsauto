@@ -29,7 +29,7 @@ stages{
 
                 stage ("Deploy to Production"){
                     steps {
-			sh "scp **/target/*.war tomcatuser@140.251.6.145:/usr/local/apache-tomcat/webapps/"
+			sh "scp **/target/*.war tomcatuser@140.251.6.145:/usr/local/apache-tomcat/webapps"
                     }
                 }
             }
