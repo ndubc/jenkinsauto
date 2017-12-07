@@ -24,7 +24,7 @@ pipeline {
 
         stage ('Deploy to Production'){
             steps{
-		sh "scp **/target/*.war tomcatuser@${params.tomcat_prod}:/usr/local/apache-tomcat/webapps/"
+		sh "scp/var/lib/jenkins/workspace/package/webapp/target/*.war tomcatuser@140.251.6.145:/usr/local/apache-tomcat/webapps/"
                 }
 
             }
