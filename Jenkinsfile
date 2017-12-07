@@ -24,10 +24,9 @@ pipeline {
 
         stage ('Deploy to Production'){
             steps{
-                timeout(time:5, unit:'DAYS'){
-                    input message:'Approve PRODUCTION Deployment?'
+		sh "scp **/target/*.war tomcatuser@${params.tomcat_prod}:/usr/local/apache-tomcat/webapps/"
                 }
-			sh "scp **/target/*.war tomcatuser@${params.tomcat_prod}:/usr/local/apache-tomcat/webapps/"
+
             }
             post {
                 success {
