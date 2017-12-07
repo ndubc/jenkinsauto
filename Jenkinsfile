@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+    parameters {
+	string(name: 'tomcat_prod', defaultValue: '140.251.6.145', description: 'Production Server')
+    }
     stages{
         stage('Build'){
             steps {
@@ -23,8 +27,7 @@ pipeline {
                 timeout(time:5, unit:'DAYS'){
                     input message:'Approve PRODUCTION Deployment?'
                 }
-
-                build job: 'deploy-to-prod'
+			sh "scp **/target/*.war tomcatuser@${params.tomcat_prod}:/usr/local/apache-tomcat/webapps/"
             }
             post {
                 success {
